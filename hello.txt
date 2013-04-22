@@ -1,0 +1,2 @@
+hello ruijie from git bash!
+****hello world!******
