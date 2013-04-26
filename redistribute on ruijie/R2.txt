@@ -1,0 +1,122 @@
+R2#show run
+R2#show running-config 
+
+Building configuration...
+Current configuration : 814 bytes
+
+!
+version RGNOS 10.3.00(3), Release(38104)(Fri Apr 25 15:05:03 CST 2008 -ngcf49)
+hostname R2
+!
+!
+!
+!
+!
+!
+!
+!
+no service password-encryption
+
+
+!
+!
+!
+!
+!
+!
+!         
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet 0/0
+ ip address 12.1.1.2 255.255.255.0
+ ipv6 enable
+ duplex auto
+ speed auto
+!
+interface FastEthernet 0/1
+ ip address 192.168.2.154 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface Loopback 0
+ ip address 2.2.2.2 255.255.255.255
+ ipv6 enable
+!
+interface Loopback 10
+ ip address 22.1.1.2 255.255.255.0
+!
+!
+ipv6 route ::/0 FastEthernet 0/0 12::1
+!
+!
+!
+router ospf 1
+ router-id 2.2.2.2
+ network 12.1.1.0 0.0.0.255 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+!
+!
+!
+!
+!
+ref parameter 50 400
+line con 0
+line aux 0
+line vty 0 4
+ login
+!
+!
+end
+R2#show ip rou
+R2#show ip route 
+
+Codes:  C - connected, S - static, R - RIP, B - BGP
+        O - OSPF, IA - OSPF inter area
+        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+        E1 - OSPF external type 1, E2 - OSPF external type 2
+        i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+        ia - IS-IS inter area, * - candidate default
+
+Gateway of last resort is no set
+C    2.2.2.2/32 is local host. 
+C    12.1.1.0/24 is directly connected, FastEthernet 0/0
+C    12.1.1.2/32 is local host. 
+O    13.1.1.0/24 [110/2] via 12.1.1.1, 00:37:02, FastEthernet 0/0
+C    22.1.1.0/24 is directly connected, Loopback 10
+C    22.1.1.2/32 is local host. 
+O E2 33.3.3.0/24 [110/20] via 12.1.1.1, 00:10:19, FastEthernet 0/0
+O E2 34.1.1.0/24 [110/20] via 12.1.1.1, 00:10:19, FastEthernet 0/0
+O E2 44.4.4.0/24 [110/20] via 12.1.1.1, 00:10:19, FastEthernet 0/0
+C    192.168.2.0/24 is directly connected, FastEthernet 0/1
+C    192.168.2.154/32 is local host. 
+R2#ping 34.1.1.4 
+Sending 5, 100-byte ICMP Echoes to 34.1.1.4, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R2#ping 34.1.1.3
+Sending 5, 100-byte ICMP Echoes to 34.1.1.3, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/10 ms
+R2#ping 13.1.1.3
+Sending 5, 100-byte ICMP Echoes to 13.1.1.3, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/10 ms
+R2#ping 13.1.1.1
+Sending 5, 100-byte ICMP Echoes to 13.1.1.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R2#

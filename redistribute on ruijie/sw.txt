@@ -1,0 +1,130 @@
+S3760#show run
+S3760#show running-config 
+
+Building configuration...
+Current configuration : 1200 bytes
+
+!
+version RGNOS 10.2.00(2), Release(27932)(Thu Dec 13 10:31:41 CST 2007 -ngcf32)
+
+!
+!
+!
+vlan 1
+!
+!
+no service password-encryption
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!         
+!
+!
+interface FastEthernet 0/1
+!
+interface FastEthernet 0/2
+!
+interface FastEthernet 0/3
+!
+interface FastEthernet 0/4
+!
+interface FastEthernet 0/5
+!
+interface FastEthernet 0/6
+!
+interface FastEthernet 0/7
+!
+interface FastEthernet 0/8
+!
+interface FastEthernet 0/9
+!
+interface FastEthernet 0/10
+!
+interface FastEthernet 0/11
+!         
+interface FastEthernet 0/12
+!
+interface FastEthernet 0/13
+!
+interface FastEthernet 0/14
+!
+interface FastEthernet 0/15
+!
+interface FastEthernet 0/16
+!
+interface FastEthernet 0/17
+!
+interface FastEthernet 0/18
+!
+interface FastEthernet 0/19
+!
+interface FastEthernet 0/20
+!
+interface FastEthernet 0/21
+!
+interface FastEthernet 0/22
+!
+interface FastEthernet 0/23
+!         
+interface FastEthernet 0/24
+!
+interface GigabitEthernet 0/25
+ no switchport
+ ip address 192.168.2.25 255.255.255.0
+!
+interface GigabitEthernet 0/26
+!
+interface GigabitEthernet 0/27
+!
+interface GigabitEthernet 0/28
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+!
+!
+!
+!
+!         
+end
+S3760#sho  
+S3760#show ip rou
+S3760#show ip route 
+
+Codes:  C - connected, S - static,  R - RIP B - BGP
+        O - OSPF, IA - OSPF inter area
+        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+        E1 - OSPF external type 1, E2 - OSPF external type 2
+        i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+        ia - IS-IS inter area, * - candidate default
+
+Gateway of last resort is no set
+C    192.168.2.0/24 is directly connected, GigabitEthernet 0/25
+C    192.168.2.25/32 is local host. 
+S3760#ping 192.168.2.25
+Sending 5, 100-byte ICMP Echoes to 192.168.2.25, timeout is 2 seconds:
+  < press Ctrl+C to break >
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+S3760#ping 12.1.1.2
+Sending 5, 100-byte ICMP Echoes to 12.1.1.2, timeout is 2 seconds:
+  < press Ctrl+C to break >
+..
+Success rate is 0 percent (0/3)
+S3760#ping 12.1.1.1
+Sending 5, 100-byte ICMP Echoes to 12.1.1.1, timeout is 2 seconds:
+  < press Ctrl+C to break >
+.....
+Success rate is 0 percent (0/5)
+S3760#
