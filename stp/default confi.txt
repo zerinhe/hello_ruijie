@@ -1,0 +1,46 @@
+SW1(config)#show span
+SW1(config)#show spanning-tree 
+StpVersion : MSTP
+SysStpStatus : ENABLED
+MaxAge : 20
+HelloTime : 2
+ForwardDelay : 15
+BridgeMaxAge : 20
+BridgeHelloTime : 2
+BridgeForwardDelay : 15
+MaxHops: 20
+TxHoldCount : 3
+PathCostMethod : Long
+BPDUGuard : Disabled
+BPDUFilter : Disabled
+
+###### mst 0 vlans map : ALL
+BridgeAddr : 001a.a918.d700
+Priority: 32768
+TimeSinceTopologyChange : 0d:1h:2m:52s
+TopologyChanges : 0
+DesignatedRoot : 8000.001a.a918.d700
+RootCost : 0
+RootPort : 0
+CistRegionRoot : 8000.001a.a918.d700
+CistPathCost : 0
+          
+SW1(config)#show span
+SW1(config)#show spanning-tree su
+SW1(config)#show spanning-tree summary 
+
+Spanning tree enabled protocol mstp
+MST 0 vlans map : ALL
+  Root ID    Priority    32768
+             Address     001a.a918.d700
+             this bridge is root
+             Hello Time   2 sec  Forward Delay 15 sec  Max Age 20 sec
+
+  Bridge ID  Priority    32768
+             Address     001a.a918.d700
+             Hello Time   2 sec  Forward Delay 15 sec  Max Age 20 sec
+
+Interface        Role Sts Cost       Prio     Type  OperEdge
+---------------- ---- --- ---------- -------- ----- ------------
+SW1(config)#
+SW1(config)#

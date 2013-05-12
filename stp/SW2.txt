@@ -1,0 +1,217 @@
+SW2#show span
+SW2#show spanning-tree 
+StpVersion : MSTP
+SysStpStatus : ENABLED
+MaxAge : 20
+HelloTime : 2
+ForwardDelay : 15
+BridgeMaxAge : 20
+BridgeHelloTime : 2
+BridgeForwardDelay : 15
+MaxHops: 20
+TxHoldCount : 3
+PathCostMethod : Long
+BPDUGuard : Disabled
+BPDUFilter : enabled
+
+###### mst 0 vlans map : 1-9, 11-19, 21-4094
+BridgeAddr : 001a.a918.cc80
+Priority: 4096
+TimeSinceTopologyChange : 0d:0h:4m:11s
+TopologyChanges : 2
+DesignatedRoot : 0000.001a.a918.d700
+RootCost : 0
+RootPort : 22
+CistRegionRoot : 0000.001a.a918.d700
+CistPathCost : 200000
+          
+
+###### mst 1 vlans map : 10, 20
+BridgeAddr : 001a.a918.cc80
+Priority: 4096
+TimeSinceTopologyChange : 0d:0h:4m:11s
+TopologyChanges : 2
+DesignatedRoot : 0001.001a.a918.d700
+RootCost : 200000
+RootPort : 22
+
+SW2#show span
+SW2#show spanning-tree sum
+SW2#show spanning-tree summary 
+
+Spanning tree enabled protocol mstp
+MST 0 vlans map : 1-9, 11-19, 21-4094
+  Root ID    Priority    0
+             Address     001a.a918.d700
+             this bridge is root
+             Hello Time   2 sec  Forward Delay 15 sec  Max Age 20 sec
+
+  Bridge ID  Priority    4096
+             Address     001a.a918.cc80
+             Hello Time   2 sec  Forward Delay 15 sec  Max Age 20 sec
+
+Interface        Role Sts Cost       Prio     Type  OperEdge
+---------------- ---- --- ---------- -------- ----- ------------
+Fa0/23           Alt  DIS 200000     128      P2p   False     
+
+Fa0/22           Root FWD 200000     128      P2p   False     
+
+MST 1 vlans map : 10, 20
+  Region Root Priority   0
+             Address     001a.a918.d700
+             this bridge is region root
+
+  Bridge ID  Priority    4096
+             Address     001a.a918.cc80
+
+Interface        Role Sts Cost       Prio     Type  OperEdge
+---------------- ---- --- ---------- -------- ----- ------------
+Fa0/23           Alt  DIS 200000     128      P2p   False     
+
+Fa0/22           Root FWD 200000     128      P2p   False     
+
+SW2#show run
+SW2#show running-config 
+
+Building configuration...
+Current configuration : 2207 bytes
+
+!
+version RGNOS 10.2.00(2), Release(27932)(Thu Dec 13 10:31:41 CST 2007 -ngcf32)
+hostname SW2
+
+!
+!
+!
+vlan 1
+!
+vlan 10
+ name HR
+!
+vlan 20
+ name IT
+!
+!
+no service password-encryption
+!
+!
+!
+!         
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree
+spanning-tree portfast bpdufilter default
+spanning-tree mst configuration
+ revision 2
+ name hezl
+ instance 0 vlan 1-9, 11-19, 21-4094
+ instance 1 vlan 10, 20
+spanning-tree mst 0 priority 4096
+spanning-tree mst 1 priority 4096
+interface FastEthernet 0/1
+ spanning-tree portfast
+!
+interface FastEthernet 0/2
+ spanning-tree portfast
+!         
+interface FastEthernet 0/3
+ spanning-tree portfast
+!
+interface FastEthernet 0/4
+ spanning-tree portfast
+!
+interface FastEthernet 0/5
+ spanning-tree portfast
+!
+interface FastEthernet 0/6
+ spanning-tree portfast
+!
+interface FastEthernet 0/7
+ spanning-tree portfast
+!
+interface FastEthernet 0/8
+ spanning-tree portfast
+!
+interface FastEthernet 0/9
+ spanning-tree portfast
+!
+interface FastEthernet 0/10
+ spanning-tree portfast
+!         
+interface FastEthernet 0/11
+ spanning-tree portfast
+!
+interface FastEthernet 0/12
+ spanning-tree portfast
+!
+interface FastEthernet 0/13
+ spanning-tree portfast
+!
+interface FastEthernet 0/14
+ spanning-tree portfast
+!
+interface FastEthernet 0/15
+ spanning-tree portfast
+!
+interface FastEthernet 0/16
+ spanning-tree portfast
+!
+interface FastEthernet 0/17
+ spanning-tree portfast
+!
+interface FastEthernet 0/18
+ spanning-tree portfast
+!         
+interface FastEthernet 0/19
+ spanning-tree portfast
+!
+interface FastEthernet 0/20
+ spanning-tree portfast
+!
+interface FastEthernet 0/21
+ spanning-tree portfast
+!
+interface FastEthernet 0/22
+ switchport access vlan 20
+ spanning-tree portfast
+!
+interface FastEthernet 0/23
+ switchport access vlan 10
+ spanning-tree portfast
+!
+interface FastEthernet 0/24
+ spanning-tree portfast
+!
+interface GigabitEthernet 0/25
+ spanning-tree portfast
+!
+interface GigabitEthernet 0/26
+ spanning-tree portfast
+!
+interface GigabitEthernet 0/27
+ spanning-tree portfast
+!
+interface GigabitEthernet 0/28
+ spanning-tree portfast
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+!
+!
+!
+!
+!
+end
+SW2#
