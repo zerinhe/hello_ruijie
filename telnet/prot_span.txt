@@ -1,0 +1,4 @@
+S2126只支持本地端口镜像，S3760-24还支持远程端口镜像。但两机器都最多只支持1个session，而ciscoS3750最多支持两个session。
+
+配置命令与cisco同，在做远程端口镜像时要注意的是先配置好remote vlan不然系统会提示vlan XX doesnot exist or it isnot remote span vlan，定义remote span vlan 方法 (config)#vlan XX ---> (config-vlan)# remote-span
+
